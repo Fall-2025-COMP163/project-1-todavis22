@@ -8,6 +8,16 @@ Example: AI helped with file I/O error handling logic in save_character function
 """
 
 def create_character(name, character_class):
+       
+    level = 1
+
+    strength, magic, health, gold = calculate_stats(character_class, level)
+ 
+    character = {"name":name, "Class":character_class, "level":level, "strength":strength, "magic":magic, "health":health, "gold":gold}
+
+    return character
+
+
     """
     Creates a new character dictionary with calculated stats
     Returns: dictionary with keys: name, class, level, strength, magic, health, gold
