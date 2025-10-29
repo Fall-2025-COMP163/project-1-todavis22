@@ -7,7 +7,7 @@ AI Usage: [Document any AI assistance used]
 Example: AI helped with file I/O error handling logic in save_character function
 """
 def calculate_stats(character_class, level):
-
+    level = 1
     character_class = character_class.lower()
 
     if (character_class == "mage"):
@@ -30,6 +30,8 @@ def calculate_stats(character_class, level):
         magic = 5 + (level * 2)
         strength = 5 + (level * 2)
         health = 20 + (level * 3)
+
+    gold = 100 + (level * 50)
     return strength, magic, health
 
 def create_character(name, character_class):
@@ -97,7 +99,7 @@ def save_character(character, filename):
     """
     # TODO: Implement this function
     # Remember to handle file errors gracefully
-    pass
+    
 
 def load_character(filename):
 
@@ -126,13 +128,13 @@ def load_character(filename):
 def display_character(character):
 
     print("=== CHARACTER SHEET ===")
-    print(f"Name: {character["Name"]}")
-    print(f"Class: {character["Class"]}")
-    print(f"Level: {character["Level"]}")
-    print(f"Strength: {character["Strength"]}")
-    print(f"Magic: {character["Magic"]}")
-    print(f"Health: {character["Health"]}")
-    print(f"Gold: {character["Gold"]}")
+    print(f"Name: {character['Name']}")
+    print(f"Class: {character['Class']}")
+    print(f"Level: {character['Level']}")
+    print(f"Strength: {character['Strength']}")
+    print(f"Magic: {character['Magic']}")
+    print(f"Health: {character['Health']}")
+    print(f"Gold: {character['Gold']}")
     """
     Prints formatted character sheet
     Returns: None (prints to console)
@@ -148,7 +150,7 @@ def display_character(character):
     Gold: 100
     """
     # TODO: Implement this function
-    pass
+    
 
 def level_up(character):
     character["Level"] += 1
@@ -171,7 +173,7 @@ def level_up(character):
     """
     # TODO: Implement this function
     # Remember to recalculate stats for the new level
-    pass
+    
 
 # Main program area (optional - for testing your functions)
 if __name__ == "__main__":
