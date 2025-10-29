@@ -87,7 +87,13 @@ def save_character(character, filename):
     return True
 
 
+
 def load_character(filename):
+
+
+    import os
+    if not os.path.exists(filename):
+        return None
 
     character = {}
     with open(filename, "r") as file:
@@ -104,7 +110,18 @@ def load_character(filename):
                 value = int(value)
 
             character[key] = value
+
+    
+    character["name"] = character["Name"]
+    character["class"] = character["Class"]
+    character["level"] = character["Level"]
+    character["strength"] = character["Strength"]
+    character["magic"] = character["Magic"]
+    character["health"] = character["Health"]
+    character["gold"]  = character["Gold"]
+
     return character
+
 
 
 
@@ -136,7 +153,7 @@ def level_up(character):
     character["Magic"] = stats[1]
     character["Health"] = stats[2]
 
-    # lowercase mirrors
+    # lowercase incase for bugs so the program dosent crash
     character["level"] = character["Level"]
     character["strength"] = character["Strength"]
     character["magic"] = character["Magic"]
