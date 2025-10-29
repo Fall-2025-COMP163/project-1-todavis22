@@ -10,29 +10,36 @@ def calculate_stats(character_class, level):
     
     character_class = character_class.lower()
     
-    if (character_class == "mage"):
-        magic = 15 + (level * 4)
-        strength = 4 + (level * 2)
-        health = 25 + (level * 3)
-    elif (character_class == "warrior"):
-        magic = 4 + (level * 2)
-        strength = 15 + (level * 4)
-        health = 30 + (level * 3)
-    elif (character_class == "cleric"):
-        magic = 15 + (level * 4)
-        strength = 7 + (level * 2)
-        health = 35 + (level * 4)
-    elif (character_class == "rogue"):
-        magic = 10 + (level * 3)
-        strength = 10 + (level * 3)
-        health = 4 + (level * 2)
+
+    if character_class == "mage":
+        strength = 3 + 2*level   
+        magic    = 11 + 4*level   
+        health   = 77 + 3*level   
+
+    elif character_class == "warrior":
+        
+        strength = 11 + 4*level 
+        magic    = 3 + 2*level
+        health   = 80 + 4*level   
+
+    elif character_class == "cleric":
+        strength = 5 + 2*level
+        magic    = 11 + 4*level
+        health   = 85 + 4*level
+
+    elif character_class == "rogue":
+        strength = 8 + 3*level
+        magic    = 8 + 3*level
+        health   = 60 + 2*level
+
     else:
-        magic = 5 + (level * 2)
-        strength = 5 + (level * 2)
-        health = 20 + (level * 3)
+        strength = 5 + 2*level
+        magic    = 5 + 2*level
+        health   = 70 + 3*level
+
+    return strength, magic, health
 
     
-    return strength, magic, health
 
 def create_character(name, character_class):
     level = 1
@@ -148,7 +155,7 @@ def load_character(filename):
     """
     # TODO: Implement this function
     # Remember to handle file not found errors
-    pass
+    
 
 def display_character(character):
 
