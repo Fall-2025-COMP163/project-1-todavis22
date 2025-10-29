@@ -110,7 +110,7 @@ def load_character(filename):
     with open(filename, "r") as f:
         for line in f:
             cleanWhites = line.strip()
-            splitValnKey = line.split()
+            splitValnKey = line.split(":")
 
             key = splitValnKey[0]
             value = splitValnKey[1]
