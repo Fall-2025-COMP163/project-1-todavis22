@@ -7,7 +7,7 @@ AI Usage: [Document any AI assistance used]
 Example: AI helped with file I/O error handling logic in save_character function
 """
 def calculate_stats(character_class, level):
-    level = 1
+    
     character_class = character_class.lower()
 
     if (character_class == "mage"):
@@ -32,15 +32,15 @@ def calculate_stats(character_class, level):
         health = 20 + (level * 3)
 
     gold = 100 + (level * 50)
-    return strength, magic, health, level, gold
+    return strength, magic, health
 
 def create_character(name, character_class):
 
-    strength = calculate_stats(character_class)
-    level = calculate_stats(character_class)
-    magic = calculate_stats(character_class)
-    health = calculate_stats(character_class)
-    gold = calculate_stats(character_class)
+    strength = calculate_stats(character_class, 1)
+    level = calculate_stats(character_class, 1)
+    magic = calculate_stats(character_class, 1)
+    health = calculate_stats(character_class, 1)
+    gold = calculate_stats(character_class, 1)
 
     new_character = {
         "Name":name,
