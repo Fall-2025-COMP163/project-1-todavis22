@@ -88,35 +88,24 @@ def save_character(character, filename):
 
 
 def load_character(filename):
+
     character = {}
+    with open(filename, "r") as file:
+        for line in file:
+            cleanWhites = line.strip()
+            splitValnKey = cleanWhites.split(":")
+            key = splitValnKey[0]
+            value = splitValnKey[1].strip()
 
-    file = open(filename, "r")
-    for line in file:
-        line = line.strip()
-        splitValnKey = line.split(":")
-        key = splitValnKey[0].strip()
-        value = splitValnKey[1].strip()
+            if key == "Character Name":
+                key = "Name"
 
-        if key == "Character Name":
-            key = "Name"
+            if key in ["Level", "Strength", "Magic", "Health", "Gold"]:
+                value = int(value)
 
-        if key in ["Level", "Strength", "Magic", "Health", "Gold"]:
-            value = int(value)
-
-        character[key] = value
-
-    file.close()
-
-    # lowercase duplicates for autograder
-    character["name"] = character["Name"]
-    character["class"] = character["Class"]
-    character["level"] = character["Level"]
-    character["strength"] = character["Strength"]
-    character["magic"] = character["Magic"]
-    character["health"] = character["Health"]
-    character["gold"] = character["Gold"]
-
+            character[key] = value
     return character
+
 
 
 def display_character(character):
