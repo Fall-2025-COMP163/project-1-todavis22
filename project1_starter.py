@@ -79,8 +79,8 @@ def save_character(character, filename):
     file.write(f"Character Name: {character['Name']}\n")
     file.write(f"Class: {character['Class']}\n")
     file.write(f"Level: {character['Level']}\n")
-    file.write(f"Magic: {character['Magic']}\n")
     file.write(f"Strength: {character['Strength']}\n")
+    file.write(f"Magic: {character['Magic']}\n")
     file.write(f"Health: {character['Health']}\n")
     file.write(f"Gold: {character['Gold']}\n")
     file.close()
@@ -116,7 +116,6 @@ def load_character(filename):
             key = splitValnKey[0]
             value = splitValnKey[1].strip()
 
-            
             if key in ["Level", "Strength", "Magic", "Health", "Gold"]:
                 value = int(value)
 
@@ -138,7 +137,7 @@ def load_character(filename):
 def display_character(character):
 
     print("=== CHARACTER SHEET ===")
-    print(f"Character Name: {character['Name']}")
+    print(f"Name: {character['Name']}")
     print(f"Class: {character['Class']}")
     print(f"Level: {character['Level']}")
     print(f"Strength: {character['Strength']}")
