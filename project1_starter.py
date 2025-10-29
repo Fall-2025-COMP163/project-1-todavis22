@@ -85,7 +85,7 @@ def save_character(character, filename):
             file.write(F"Gold:{character['Gold']}\n")
             file.close()
 
-            return True
+        return True
     """
     Saves character to text file in specific format
     Returns: True if successful, False if error occurred
@@ -111,9 +111,8 @@ def load_character(filename):
         for line in f:
             cleanWhites = line.strip()
             splitValnKey = line.split(":")
-
             key = splitValnKey[0]
-            value = splitValnKey[1]
+            value = splitValnKey[1].strip()
 
             if value.isdigit():
                 value = int(value)
