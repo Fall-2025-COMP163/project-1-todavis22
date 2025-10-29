@@ -35,8 +35,10 @@ def calculate_stats(character_class, level):
     return strength, magic, health
 
 def create_character(name, character_class):
-    gold = 100 + (level * 50)
     level = 1
+    strength, magic, health = calculate_stats(character_class, level)
+    gold = 100
+
     strength = calculate_stats(character_class, 1)
     magic = calculate_stats(character_class, 1)
     health = calculate_stats(character_class, 1)
