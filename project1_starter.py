@@ -70,22 +70,22 @@ def create_character(name, character_class):
 
 def save_character(character, filename):
 
-    keys= ["Name", "Class", "Level", "Magic", "Strength", "Health", "Gold"]
+    keys = ["Name", "Class", "Level", "Magic", "Strength", "Health", "Gold"]
     for key in keys:
         if key not in character:
             return False
-        else:  
-            file = open(filename, "w")
-            file.write(f"Character Name: {character['Name']}\n")
-            file.write(f"Class: {character['Class']}\n")
-            file.write(f"Level:{character['Level']}\n")
-            file.write(f"Magic: {character['Magic']}\n")
-            file.write(f"Strength: {character['Strength']}\n")
-            file.write(f"Health:{character['Health']}\n")
-            file.write(F"Gold:{character['Gold']}\n")
-            file.close()
+    
+    file = open(filename, "w")
+    file.write(f"Character Name: {character['Name']}\n")
+    file.write(f"Class: {character['Class']}\n")
+    file.write(f"Level: {character['Level']}\n")
+    file.write(f"Magic: {character['Magic']}\n")
+    file.write(f"Strength: {character['Strength']}\n")
+    file.write(f"Health: {character['Health']}\n")
+    file.write(f"Gold: {character['Gold']}\n")
+    file.close()
 
-        return True
+    return True
     """
     Saves character to text file in specific format
     Returns: True if successful, False if error occurred
@@ -105,19 +105,28 @@ def save_character(character, filename):
 
 def load_character(filename):
 
+ 
     character = {}
 
     with open(filename, "r") as f:
         for line in f:
             cleanWhites = line.strip()
-            splitValnKey = line.split(":")
+            splitValnKey = cleanWhites.split(":")
+            
             key = splitValnKey[0]
             value = splitValnKey[1].strip()
 
-            if value.isdigit():
+            
+            if key in ["Level", "Strength", "Magic", "Health", "Gold"]:
                 value = int(value)
+
+      
+            if key == "Character Name":
+                key = "Name"
+
             character[key] = value
-    return character 
+
+    return character
     """
     Loads character from text file
     Returns: character dictionary if successful, None if file not found
