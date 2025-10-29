@@ -9,7 +9,7 @@ Example: AI helped with file I/O error handling logic in save_character function
 def calculate_stats(character_class, level):
     
     character_class = character_class.lower()
-    level = 1
+    
     if (character_class == "mage"):
         magic = 15 + (level * 4)
         strength = 4 + (level * 2)
@@ -36,12 +36,12 @@ def calculate_stats(character_class, level):
 
 def create_character(name, character_class):
     level = 1
-    strength, magic, health = calculate_stats(character_class, level)
+    stat = calculate_stats(character_class, level)
     gold = 100
 
-    strength = calculate_stats(character_class, 1)
-    magic = calculate_stats(character_class, 1)
-    health = calculate_stats(character_class, 1)
+    strength = stat[0]
+    magic = stat[1]
+    health = stat[2]
 
 
     new_character = {
@@ -72,11 +72,11 @@ def save_character(character, filename):
 
     keys= ["Name", "Class", "Level", "Magic", "Strength", "Health", "Gold"]
     for key in keys:
-        if keys not in character:
+        if key not in character:
             return False
         else:  
             file = open(filename, "w")
-            file.write(f"Character name: {character['Name']}\n")
+            file.write(f"Character Name: {character['Name']}\n")
             file.write(f"Class: {character['Class']}\n")
             file.write(f"Level:{character['Level']}\n")
             file.write(f"Magic: {character['Magic']}\n")
@@ -115,7 +115,7 @@ def load_character(filename):
             key = splitValnKey[0]
             value = splitValnKey[1]
 
-            if value.digit():
+            if value.isdigit():
                 value = int(value)
             character[key] = value
     return character 
@@ -130,7 +130,7 @@ def load_character(filename):
 def display_character(character):
 
     print("=== CHARACTER SHEET ===")
-    print(f"Name: {character['Name']}")
+    print(f"Character Name: {character['Name']}")
     print(f"Class: {character['Class']}")
     print(f"Level: {character['Level']}")
     print(f"Strength: {character['Strength']}")
