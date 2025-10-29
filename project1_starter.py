@@ -53,6 +53,15 @@ def create_character(name, character_class):
         "Health":health,
         "Gold": gold
     }
+
+    new_character["name"] = new_character["Name"]
+    new_character["class"] = new_character["Class"]
+    new_character["level"] = new_character["Level"]
+    new_character["magic"] = new_character["Magic"]
+    new_character["strength"] = new_character["Strength"]
+    new_character["health"] = new_character["Health"]
+    new_character["gold"] = new_character["Gold"]
+
     return new_character
     """
     Creates a new character dictionary with calculated stats
@@ -125,6 +134,13 @@ def load_character(filename):
 
             character[key] = value
 
+            if key == "Name":      character["name"] = value
+            if key == "Class":     character["class"] = value
+            if key == "Level":     character["level"] = value
+            if key == "Magic":     character["magic"] = value
+            if key == "Strength":  character["strength"] = value
+            if key == "Health":    character["health"] = value
+            if key == "Gold":      character["gold"] = value
     return character
     """
     Loads character from text file
@@ -174,7 +190,11 @@ def level_up(character):
     character["Magic"] = magic
     character["Health"] = health
 
-    
+    character["level"] = character["Level"]
+    character["strength"] = character["Strength"]
+    character["magic"] = character["Magic"]
+    character["health"] = character["Health"]
+
     """
     Increases character level and recalculates stats
     Modifies the character dictionary directly
