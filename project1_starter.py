@@ -26,6 +26,10 @@ def calculate_stats(character_class, level):
         magic = 10 + (level * 3)
         strength = 10 + (level * 3)
         health = 4 + (level * 2)
+    else:
+        magic = 5 + (level * 2)
+        strength = 5 + (level * 2)
+        health = 20 + (level * 3)
     return strength, magic, health
 
 def create_character(name, character_class):
