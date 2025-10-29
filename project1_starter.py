@@ -32,7 +32,7 @@ def calculate_stats(character_class, level):
         health = 20 + (level * 3)
 
     gold = 100 + (level * 50)
-    return strength, magic, health
+    return strength, magic, health, level, gold
 
 def create_character(name, character_class):
 
@@ -70,16 +70,16 @@ def save_character(character, filename):
 
     keys= ["Name", "Class", "Level", "Magic", "Strength", "Health", "Gold"]
     for key in keys:
-        if keys not in filename:
+        if keys not in character:
             return False
         else:  
             file = open(filename, "w")
-            file.write(f"Name: {character['Name']}\n")
+            file.write(f"Character name: {character['Name']}\n")
             file.write(f"Class: {character['Class']}\n")
             file.write(f"Level:{character['Level']}\n")
             file.write(f"Magic: {character['Magic']}\n")
             file.write(f"Strength: {character['Strength']}\n")
-            file.write(f"Health:{character['health']}\n")
+            file.write(f"Health:{character['Health']}\n")
             file.write(F"Gold:{character['Gold']}\n")
             file.close()
 
@@ -106,7 +106,7 @@ def load_character(filename):
     character = {}
 
     with open(filename, "r") as f:
-        for line in line:
+        for line in f:
             cleanWhites = line.strip()
             splitValnKey = line.split()
 
@@ -155,7 +155,7 @@ def display_character(character):
 def level_up(character):
     character["Level"] += 1
 
-    stats = calculate_stats(character["Class"], character["level"])\
+    stats = calculate_stats(character["Class"], character["Level"])
     
     strength = stats[0]
     magic = stats[1]
