@@ -115,6 +115,12 @@ def load_character(filename):
 
             character[key] = value
 
+    #Recalculate stats to ensure correctness after loading chat help me with this
+    s, m, h = calculate_stats(character["class"], character["level"])
+    character["strength"] = s
+    character["magic"] = m
+    character["health"] = h
+
     return character
 
 
