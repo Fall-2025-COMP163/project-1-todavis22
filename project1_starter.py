@@ -176,6 +176,13 @@ if __name__ == "__main__":
     print("=== CHARACTER CREATOR ===")
     print("Test your functions here!")
     
+    char = create_character("Test", "Mage")
+    display_character(char)
+    save_character(char, "my_character.txt")
+    loaded = load_character("my_character.txt")
+
+    print("Loaded Character:")
+    display_character(loaded)
     # Example usage:
     # char = create_character("TestHero", "Warrior")
     # display_character(char)
