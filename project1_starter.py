@@ -52,7 +52,7 @@ def create_character(name, character_class):
 
     new_character = {
         "name": name,
-        "class": character_class,  # Keep original case here
+        "class": character_class,  # Keep original capitalization for value
         "level": level,
         "magic": magic,
         "strength": strength,
@@ -72,10 +72,10 @@ def save_character(character, filename):
         if key not in character:
             return False
 
-    # changed the output format to match autograder exactly
     with open(filename, "w") as file:
+        # exact labels matter here
         file.write(f"Character Name: {character['name']}\n")
-        file.write(f"Class: {character['class']}\n")  # Keep original capitalization
+        file.write(f"Class: {character['class']}\n")
         file.write(f"Level: {character['level']}\n")
         file.write(f"Strength: {character['strength']}\n")
         file.write(f"Magic: {character['magic']}\n")
@@ -102,20 +102,20 @@ def load_character(filename):
             if ":" not in line:
                 continue
             cleanWhites = line.strip()
-            splitValnKey = cleanWhites.split(":")
+            splitValnKey = cleanWhites.split(":", 1)
             key = splitValnKey[0].lower().strip()
             value = splitValnKey[1].strip()
 
-            # Handle "Character Name" specifically
             if key == "character name":
                 key = "name"
 
+            # only convert numeric fields
             if key in ["level", "strength", "magic", "health", "gold"]:
                 value = int(value)
 
             character[key] = value
 
-    #Recalculate stats to ensure correctness after loading chat help me with this
+    # ensure stats are consistent (after loading or leveling) Chat help me with this
     s, m, h = calculate_stats(character["class"], character["level"])
     character["strength"] = s
     character["magic"] = m
@@ -134,6 +134,29 @@ def display_character(character):
     print(f"Magic: {character['magic']}")
     print(f"Health: {character['health']}")
     print(f"Gold: {character['gold']}")
+
+
+def level_up(character):
+    #This is the levelup funcction basicallu its getting the the stats from my tuple,
+    # I index it to assign it to the value in my tuple
+    character["level"] += 1
+    stats = calculate_stats(character["class"], character["level"])
+    character["strength"] = stats[0]
+    character["magic"] = stats[1]
+    character["health"] = stats[2]
+
+
+if __name__ == "__main__":
+    print("=== CHARACTER CREATOR ===")
+    print("Test your functions here!")
+    
+    char = create_character("Test", "Mage")
+    display_character(char)
+    save_character(char, "my_character.txt")
+    loaded = load_character("my_character.txt")
+
+    print("Loaded Character:")
+    display_character(loaded)
 
 
 def level_up(character):
