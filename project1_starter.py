@@ -10,21 +10,21 @@ def calculate_stats(character_class, level):
     # i used .lower because python and csae sesntive and if the use my type in all caps
     # it automatically make it loer so the program won't crash
     #use if statements to calculate the per level basically if level was 2 it level up the strength by 2 * 2 + 5 = 9
-    character_class = character_class.lower()
+    cclass = character_class.lower()
 
-    if character_class == "mage":
+    if cclass == "mage":
         strength = 5 + (level * 2)
         magic = 15 + (level * 3)
         health = 80 + (level * 5)
-    elif character_class == "warrior":
+    elif cclass == "warrior":
         strength = 15 + (level * 4)
         magic = 5 + (level * 2)
         health = 90 + (level * 6)
-    elif character_class == "cleric":
+    elif cclass == "cleric":
         strength = 8 + (level * 3)
         magic = 12 + (level * 4)
         health = 85 + (level * 5)
-    elif character_class == "rogue":
+    elif cclass == "rogue":
         strength = 10 + (level * 3)
         magic = 10 + (level * 3)
         health = 75 + (level * 4)
@@ -52,7 +52,7 @@ def create_character(name, character_class):
 
     new_character = {
         "name": name,
-        "class": character_class,
+        "class": character_class,  # Keep original case here
         "level": level,
         "magic": magic,
         "strength": strength,
@@ -74,8 +74,8 @@ def save_character(character, filename):
 
     # changed the output format to match autograder exactly
     with open(filename, "w") as file:
-        file.write(f"Character Name: {character['name']}\n")  # ← this was the fix!
-        file.write(f"Class: {character['class']}\n")
+        file.write(f"Character Name: {character['name']}\n")
+        file.write(f"Class: {character['class']}\n")  # Keep original capitalization
         file.write(f"Level: {character['level']}\n")
         file.write(f"Strength: {character['strength']}\n")
         file.write(f"Magic: {character['magic']}\n")
@@ -135,6 +135,7 @@ def level_up(character):
     # I index it to assign it to the value in my tuple
     character["level"] += 1
 
+    # Use calculate_stats with lowercase just for math
     stats = calculate_stats(character["class"], character["level"])
     character["strength"] = stats[0]
     character["magic"] = stats[1]
