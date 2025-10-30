@@ -74,7 +74,7 @@ def save_character(character, filename):
 
     # changed the output format to match autograder exactly
     with open(filename, "w") as file:
-        file.write(f"Name: {character['name']}\n")
+        file.write(f"Character Name: {character['name']}\n")  # ← this was the fix!
         file.write(f"Class: {character['class']}\n")
         file.write(f"Level: {character['level']}\n")
         file.write(f"Strength: {character['strength']}\n")
@@ -106,6 +106,10 @@ def load_character(filename):
             key = splitValnKey[0].lower().strip()
             value = splitValnKey[1].strip()
 
+            # Handle "Character Name" specifically
+            if key == "character name":
+                key = "name"
+
             if key in ["level", "strength", "magic", "health", "gold"]:
                 value = int(value)
 
@@ -135,6 +139,7 @@ def level_up(character):
     character["strength"] = stats[0]
     character["magic"] = stats[1]
     character["health"] = stats[2]
+
 
 if __name__ == "__main__":
     print("=== CHARACTER CREATOR ===")
