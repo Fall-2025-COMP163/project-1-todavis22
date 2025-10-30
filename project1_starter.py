@@ -82,19 +82,19 @@ def save_character(character, filename):
     #oopens file writes in it then closes it the return true
     #I understand it but chat helped me check the keys in the list
     # Chat told me to check for keys in the dictionaty
-    keys = ["Name", "Class", "Level", "Strength", "Magic", "Health", "Gold"]
+    keys = ["name", "class", "level", "strength", "magic", "health", "gold"]
     for key in keys:
         if key not in character:
             return False
 
     file = open(filename, "w")
-    file.write(f"Character Name: {character['Name']}\n")
-    file.write(f"Class: {character['Class']}\n")
-    file.write(f"Level: {character['Level']}\n")
-    file.write(f"Strength: {character['Strength']}\n")
-    file.write(f"Magic: {character['Magic']}\n")
-    file.write(f"Health: {character['Health']}\n")
-    file.write(f"Gold: {character['Gold']}\n")
+    file.write(f"Character Name: {character['name']}\n")
+    file.write(f"Class: {character['class']}\n")
+    file.write(f"Level: {character['level']}\n")
+    file.write(f"Strength: {character['strength']}\n")
+    file.write(f"Magic: {character['magic']}\n")
+    file.write(f"Health: {character['health']}\n")
+    file.write(f"Gold: {character['gold']}\n")
     file.close()
     return True
 
@@ -125,7 +125,7 @@ def load_character(filename):
             if key == "Character Name":
                 key = "Name"
 
-            if key in ["Level", "Strength", "Magic", "Health", "Gold"]:
+            if key in ["level", "strength", "magic", "health", "gold"]:
                 value = int(value)
 
             character[key] = value
@@ -159,12 +159,12 @@ def display_character(character):
 def level_up(character):
     #This is the levelup funcction basicallu its getting the the stats from my tuple,
     # I index it to assign it to the value in my tuple
-    character["Level"] += 1
+    character["level"] += 1
 
-    stats = calculate_stats(character["Class"], character["Level"])
-    character["Strength"] = stats[0]
-    character["Magic"] = stats[1]
-    character["Health"] = stats[2]
+    stats = calculate_stats(character["class"], character["level"])
+    character["strength"] = stats[0]
+    character["magic"] = stats[1]
+    character["health"] = stats[2]
 
     # lowercase incase for bugs so the program dosent crash chat told me to do it
     character["level"] = character["Level"]
