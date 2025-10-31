@@ -1,23 +1,14 @@
 """
 COMP 163 - Project 1: Character Creator & Saving/Loading
-Name: [Your Name Here]
-Date: [Date]
-
-AI Usage: [Document any AI assistance used]
-Example: AI helped with file I/O error handling logic in save_character function
-"""
-"""
-COMP 163 - Project 1: Character Creator & Saving/Loading
 Name: Treven Omari Davis
 Date: [Date]
 
 AI Usage: AI helped align file formatting and key naming to match autograder.
 """
 
+import os
+
 def calculate_stats(character_class, level):
-    # i used .lower because python and csae sesntive and if the use my type in all caps
-    # it automatically make it loer so the program won't crash
-    #use if statements to calculate the per level basically if level was 2 it level up the strength by 2 * 2 + 5 = 9
     character_class = character_class.lower()
 
     if character_class == "mage":
@@ -45,11 +36,6 @@ def calculate_stats(character_class, level):
 
 
 def create_character(name, character_class):
-    # started off at level by defaault 
-    #changing later but gold is hardcoded at 100
-    # i acces my stats from calculate stats
-    #made a dictionary to assign my keys names to the acutally use value
-    #chat told me to use level = 1 at the beginning
     level = 1
     stat = calculate_stats(character_class, level)
     gold = 100
@@ -78,14 +64,16 @@ def create_character(name, character_class):
 
 
 def save_character(character, filename):
-    # saves the character but first checks to see if the keys are fiund
-    #oopens file writes in it then closes it the return true
-    #I understand it but chat helped me check the keys in the list
-    # Chat told me to check for keys in the dictionaty
     keys = ["Name", "Class", "Level", "Strength", "Magic", "Health", "Gold"]
     for key in keys:
         if key not in character:
             return False
+    # chat gpt help me with this basically it It makes sure the character dictionary includes all 
+    # the necessary info before saving to a file.
+    #If something’s missing it doesnt even try to write to the file
+    folder = os.path.split(filename)[0]
+    if folder and not os.path.exists(folder):
+        return False
 
     file = open(filename, "w")
     file.write(f"Character Name: {character['Name']}\n")
@@ -99,16 +87,7 @@ def save_character(character, filename):
     return True
 
 
-
 def load_character(filename):
-
-#this function is loading our character basically using import os is letting us acces our loaded data file
-# the if statement checks if it exist and if not return none
-# the with statement open my file and reads it after then it strips the white spaces
-#Then it splits my key and values using the colon 
-#uses indexs to assign it
-#import os chat help me out with that
-    import os
     if not os.path.exists(filename):
         return None
 
@@ -119,18 +98,12 @@ def load_character(filename):
             splitValnKey = cleanWhites.split(":")
             key = splitValnKey[0]
             value = splitValnKey[1].strip()
-        # Chat told me to do this but basically what chat is saying is that when i write it as a file
-        # it says character name but theres no such thing as character name in my dictionary so
-        # basically its saying when you see this just store it ini the name dictionary6
             if key == "Character Name":
                 key = "Name"
-
             if key in ["Level", "Strength", "Magic", "Health", "Gold"]:
                 value = int(value)
-
             character[key] = value
 
-    #lowercase the program just incase they did lower or higher so the program dont crash chat told me to do this
     character["name"] = character["Name"]
     character["class"] = character["Class"]
     character["level"] = character["Level"]
@@ -142,10 +115,7 @@ def load_character(filename):
     return character
 
 
-
-
 def display_character(character):
-    # displays the results
     print("=== CHARACTER SHEET ===")
     print(f"Name: {character['Name']}")
     print(f"Class: {character['Class']}")
@@ -157,8 +127,6 @@ def display_character(character):
 
 
 def level_up(character):
-    #This is the levelup funcction basicallu its getting the the stats from my tuple,
-    # I index it to assign it to the value in my tuple
     character["Level"] += 1
 
     stats = calculate_stats(character["Class"], character["Level"])
@@ -166,18 +134,18 @@ def level_up(character):
     character["Magic"] = stats[1]
     character["Health"] = stats[2]
 
-    # lowercase incase for bugs so the program dosent crash chat told me to do it
     character["level"] = character["Level"]
     character["strength"] = character["Strength"]
     character["magic"] = character["Magic"]
     character["health"] = character["Health"]
+
 
 if __name__ == "__main__":
     print("=== CHARACTER CREATOR ===")
     print("Test your functions here!")
     
     # Example usage:
-    # char = create_character("TestHero", "Warrior")
-    # display_character(char)
-    # save_character(char, "my_character.txt")
-    # loaded = load_character("my_character.txt")
+    char = create_character("TestHero", "Warrior")
+    display_character(char)
+    save_character(char, "my_character.txt")
+    loaded = load_character("my_character.txt")
