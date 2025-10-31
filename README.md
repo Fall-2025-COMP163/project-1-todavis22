@@ -108,6 +108,8 @@ Rogues are evenly balanced in all areas but don’t specialize.\
 AI (ChatGPT) helped me with:
 Structuring the functions for saving and loading files correctly.
 Making sure my key names matched the autograder’s expectations.
-Explaining how to handle invalid file paths without using try/except.
+Explaining how to handle invalid file paths without.
 Improving readability and organization in my code comments.
-All final logic, stat formulas, and testing examples were written and verifi
+All final logic, stat formulas, and testing examples were written and verified
+Run to code:
+project1_starter.py2
