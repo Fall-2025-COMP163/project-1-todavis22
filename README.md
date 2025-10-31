@@ -97,3 +97,17 @@ Modifying protected files will result in automatic academic integrity violation
 Implementation (70%): Function correctness, file operations, error handling
 
 Interview (30%): Code explanation and live coding challenge
+
+Readme submission:
+My RPG world is a simple fantasy-style adventure setting where players can create different character types such as Mage, Warrior, Cleric, and Rogue. Each class has its own strengths, weaknesses, and stat growth formulas that reflect its role in combat
+I chose my stat formulas to match common RPG logic:
+Mages gain the most magic and moderate strength.
+Warriors get large boosts in strength and health.
+Clerics balance magic and defense (health).
+Rogues are evenly balanced in all areas but don’t specialize.\
+AI (ChatGPT) helped me with:
+Structuring the functions for saving and loading files correctly.
+Making sure my key names matched the autograder’s expectations.
+Explaining how to handle invalid file paths without using try/except.
+Improving readability and organization in my code comments.
+All final logic, stat formulas, and testing examples were written and verifi
